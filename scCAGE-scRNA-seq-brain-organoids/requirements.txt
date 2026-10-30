@@ -1,0 +1,6 @@
+celltypist
+scanpy
+anndata
+pandas
+numpy
+scipy
