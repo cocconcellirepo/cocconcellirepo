@@ -9,6 +9,8 @@ joint_path <- file.path(results_dir, "shared_embedding")
 ct_path    <- file.path(results_dir, "celltypist")
 tsne_path  <- file.path(results_dir, "tSNE")
 pt_path    <- file.path(results_dir, "monocle3")
+scafe_path <- file.path(results_dir, "scafe")
+tcre_path  <- file.path(results_dir, "tCRE_embedding")
 
 samples <- read.csv("samples.csv", stringsAsFactors = FALSE)
 samples$data_dir <- file.path(data_root, samples$label, "filtered_feature_bc_matrix")

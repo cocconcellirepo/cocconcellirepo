@@ -11,8 +11,9 @@ Each step is a folder with its own README: what it does, why each choice was mad
 | [1. Pre-processing](01_preprocessing) | QC, doublet removal, normalization, cell cycle scores; one shared map per timepoint, without batch correction | scater, scran, scDblFinder, batchelor |
 | [2. Cell type annotation](02_celltypist) | a CellTypist model trained on the Kanton et al. 2019 organoid timecourse; labels, composition, marker check, t-SNE | CellTypist, scanpy, ggplot2 |
 | [3. Trajectory](03_trajectory) | pseudotime across the five timepoints, one map per genotype, with a numbered path computed from the principal graph | monocle3, igraph, ggrepel |
+| [4. Regulatory elements](04_tCRE_SCAFE) | transcribed cis-regulatory elements from the 5′ signal, a common set for all samples, and maps built on regulatory elements only | SCAFE, scran, batchelor |
 
-Still to add: transcribed cis-regulatory elements with SCAFE, RNA velocity, allele-specific expression.
+Still to add: RNA velocity, allele-specific expression.
 
 ## Reading the results
 
@@ -25,7 +26,7 @@ library effects: differences between samples are read as descriptive, not tested
 config.R        paths and sample table, used by all the R scripts
 samples.csv     labels and expected doublet rate of each library
 requirements.txt  Python packages for step 2
-01_preprocessing/  02_celltypist/  03_trajectory/    README, scripts/, figures/
+01_preprocessing/  02_celltypist/  03_trajectory/  04_tCRE_SCAFE/    README, scripts/, figures/
 ```
 
 Raw data and large objects are not included. All the scripts are run from this folder.
