@@ -20,12 +20,12 @@ behind each choice. Raw data are not included; every step explains what the inpu
 | [1. Pre-processing](scCAGE-scRNA-seq-brain-organoids/01_preprocessing) | QC, doublet removal, normalization, cell cycle scoring and shared embeddings without batch correction (Bioconductor, OSCA workflow) |
 | [2. Cell type annotation](scCAGE-scRNA-seq-brain-organoids/02_celltypist) | A CellTypist model trained on the Kanton et al. 2019 organoid timecourse, with stage-specific thresholds |
 | [3. Trajectory](scCAGE-scRNA-seq-brain-organoids/03_trajectory) | Pseudotime across five timepoints with monocle3, and a numbered path on the principal graph computed from the data |
+| [4. Regulatory elements](scCAGE-scRNA-seq-brain-organoids/04_tCRE_SCAFE) | Transcribed cis-regulatory elements with SCAFE: promoters and enhancer candidates from 10x 5′ data, a pooled common set for all samples, count matrices, and UMAPs built on regulatory elements only |
 
 ## Coming next
 
 I'm adding the other analyses one at a time, as each one is cleaned up:
 
-- **Transcribed cis-regulatory elements with SCAFE**: promoters and enhancer candidates from 10x 5′ data, a pooled common set for all samples, count matrices, and UMAPs built on regulatory elements only
 - **RNA velocity**: velocyto and scVelo
 - **Allele-specific expression**: a single locus, from single-cell BAM files
 
