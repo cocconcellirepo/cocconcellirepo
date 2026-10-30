@@ -1,0 +1,16 @@
+# data and large outputs are not part of the repository
+data/
+results/
+*.rds
+*.h5
+*.h5ad
+*.loom
+*.bam
+*.bai
+*.mtx
+*.mtx.gz
+.Rhistory
+.RData
+.Rproj.user/
+*.pkl
+__pycache__/
