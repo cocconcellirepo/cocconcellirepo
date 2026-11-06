@@ -19,20 +19,20 @@ behind each choice. Raw data are not included; every step explains what the inpu
 |---|---|
 | [1. Pre-processing](scCAGE-scRNA-seq-brain-organoids/01_preprocessing) | QC, doublet removal, normalization, cell cycle scoring and shared embeddings without batch correction (Bioconductor, OSCA workflow) |
 | [2. Cell type annotation](scCAGE-scRNA-seq-brain-organoids/02_celltypist) | A CellTypist model trained on the Kanton et al. 2019 organoid timecourse, with stage-specific thresholds |
-| [3. Trajectory](scCAGE-scRNA-seq-brain-organoids/03_trajectory) | Pseudotime across five timepoints with monocle3, and a numbered path on the principal graph computed from the data |
+| [3. Trajectory](scCAGE-scRNA-seq-brain-organoids/03_trajectory) | Pseudotime across five timepoints with monocle3, with a numbered path on the principal graph computed from the data, and slingshot curves inside the early timepoints |
 | [4. Regulatory elements](scCAGE-scRNA-seq-brain-organoids/04_tCRE_SCAFE) | Transcribed cis-regulatory elements with SCAFE: promoters and enhancer candidates from 10x 5′ data, a pooled common set for all samples, count matrices, and UMAPs built on regulatory elements only |
+| [5. RNA velocity](scCAGE-scRNA-seq-brain-organoids/05_rna_velocity) | Velocyto and a dynamical scVelo model per sample, streams on the same maps as the cell types, velocity pseudotime (OSCA Figure 10.14 with velociraptor) and latent time |
 
 ## Coming next
 
 I'm adding the other analyses one at a time, as each one is cleaned up:
 
-- **RNA velocity**: velocyto and scVelo
 - **Allele-specific expression**: a single locus, from single-cell BAM files
 
 ## Tools
 
-R / Bioconductor (SingleCellExperiment, scater, scran, batchelor, scDblFinder), Seurat, monocle3,
-slingshot, ggplot2 · Python (CellTypist, scanpy, scVelo) · SCAFE, samtools, pysam · bash on a Linux
+R / Bioconductor (SingleCellExperiment, scater, scran, batchelor, scDblFinder), Seurat, monocle3, velociraptor,
+slingshot, ggplot2 · Python (CellTypist, scanpy, scVelo, velocyto) · SCAFE, samtools, pysam · bash on a Linux
 server (long jobs with nohup) · git
 
 ## Background
