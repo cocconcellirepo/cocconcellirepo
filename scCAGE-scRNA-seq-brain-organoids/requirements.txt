@@ -4,3 +4,6 @@ anndata
 pandas
 numpy
 scipy
+scvelo
+velocyto
+matplotlib
