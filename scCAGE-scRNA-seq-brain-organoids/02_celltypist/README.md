@@ -16,7 +16,8 @@ T<t>_joint.rds + Kanton timecourse
        └─ 02_celltypist_annotation.py   train one model, annotate all timepoints
             ├─ 03_celltypist_plots.R    final labels per timepoint, maps, composition
             ├─ 04_marker_check.R        are the labels supported by markers and probabilities?
-            └─ 05_tsne.R                t-SNE on the same PCA as the UMAP
+            ├─ 05_tsne.R                t-SNE on the same PCA as the UMAP
+            └─ 06_marker_dotplot.R      marker genes of each identity, CTT and PAT side by side
 ```
 
 ## Choices
@@ -71,6 +72,18 @@ sizes are not meaningful.
 <img src="figures/T3_shared_tSNE_CellTypist_nothr_p0.4.png" width="800">
 <img src="figures/T4_shared_tSNE_CellTypist_nothr_p0.4.png" width="800">
 
+**Marker genes of each identity.** `scran::scoreMarkers` between the identities, blocked on the sample,
+genes ranked by `mean.AUC` (the mean AUC of the identity against each of the other identities, so the
+top genes are the specific ones); top 5 per identity, each gene shown once. One column per identity ×
+genotype with at least 20 cells. Same layout as Figure 3A of Swamy et al. 2021. When even the top genes
+of an identity have a `mean.AUC` around 0.7, the label has no specific profile at that timepoint.
+
+<img src="figures/T0_marker_dotplot.png" width="600">
+<img src="figures/T1_marker_dotplot.png" width="600">
+<img src="figures/T2_marker_dotplot.png" width="600">
+<img src="figures/T3_marker_dotplot.png" width="600">
+<img src="figures/T4_marker_dotplot.png" width="600">
+
 ## Run it
 
 From the project folder, with the Kanton et al. 2019 timecourse in
@@ -88,7 +101,10 @@ source("02_celltypist/scripts/03_celltypist_plots.R")
 source("02_celltypist/scripts/04_marker_check.R")
 source("02_celltypist/scripts/05_tsne.R")
 ```
+```bash
+Rscript 02_celltypist/scripts/06_marker_dotplot.R 0 1 2 3 4
+```
 
-R with SingleCellExperiment, Seurat, Matrix, scater, ggplot2.
+R with SingleCellExperiment, Seurat, Matrix, scater, scran, scuttle, ggplot2.
 
 Next: [3. Trajectory](../03_trajectory)
