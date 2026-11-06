@@ -1,8 +1,9 @@
-# 3. Trajectory and pseudotime with monocle3
+# 3. Trajectory and pseudotime with monocle3 and slingshot
 
 One map per genotype with all five timepoints, a principal graph, a pseudotime from the T0 stem
-cells, and a numbered path that makes the graph readable. Cells, counts and labels come from
-[step 1](../01_preprocessing) and [step 2](../02_celltypist).
+cells, and a numbered path that makes the graph readable (monocle3). Then, inside each early
+timepoint, a slingshot curve through stem cells, neuroectodermal-like cells and NSC. Cells, counts
+and labels come from [step 1](../01_preprocessing) and [step 2](../02_celltypist).
 
 ## Pipeline
 
@@ -57,6 +58,28 @@ computed from the data with no manual placement:
 Pseudotime is a position along a branch, not a clock: a later day can have a lower median when its
 cells sit on a shorter branch.
 
+## Slingshot inside each early timepoint (T0-T2)
+
+A second, simpler view: one principal curve per timepoint, CTT and PAT together, through the early
+cell types only (stem cells → neuroectodermal-like cells → NSC). Code as in OSCA.advanced, chapter
+"Trajectory Analysis" (slingshot).
+
+| Choice | What | Why |
+|---|---|---|
+| Space | the curve is fitted on the 50 PCs of the joint object (the same PCA as UMAP_A) and only drawn on UMAP_A and on the t-SNE with `embedCurves` | UMAP and t-SNE distort the distances between groups of cells |
+| Cells | stem cells 1 + 2 merged as the root (`start.clus`), neuroectodermal-like cells, NSC; Unassigned, organoid-only types and stem cells 3 (3-6 cells) in grey | the trajectory is drawn only through the types that are expected at these stages |
+| Several lineages | pseudotime = mean over the lineages of a cell | as in OSCA |
+| Timepoints | T0-T2 | at T3-T4 the early types are almost gone; the monocle3 maps above cover T0-T4 |
+
+CTT and PAT share the curve of their timepoint, so their pseudotime values are on the same scale
+inside a timepoint, not across timepoints.
+
+| | UMAP_A | t-SNE |
+|---|---|---|
+| T0 | <img src="figures/T0_pseudotime_UMAP_A.png" width="400"> | <img src="figures/T0_pseudotime_tSNE.png" width="400"> |
+| T1 | <img src="figures/T1_pseudotime_UMAP_A.png" width="400"> | <img src="figures/T1_pseudotime_tSNE.png" width="400"> |
+| T2 | <img src="figures/T2_pseudotime_UMAP_A.png" width="400"> | <img src="figures/T2_pseudotime_tSNE.png" width="400"> |
+
 ## Run it
 
 From the project folder, after steps 1 and 2. Set `geno` in Step 0 of the script (first `"CTT"`, then
@@ -66,4 +89,11 @@ From the project folder, after steps 1 and 2. Set `geno` in Step 0 of the script
 source("03_trajectory/scripts/monocle3_trajectory.R")
 ```
 
-R with monocle3, Seurat, SingleCellExperiment, igraph, ggplot2, ggrepel, patchwork.
+Slingshot, after `02_celltypist/scripts/05_tsne.R`:
+
+```r
+source("03_trajectory/scripts/slingshot_pseudotime.R")
+source("03_trajectory/scripts/slingshot_tSNE.R")
+```
+
+R with monocle3, slingshot, Seurat, SingleCellExperiment, igraph, ggplot2, ggrepel, patchwork.
