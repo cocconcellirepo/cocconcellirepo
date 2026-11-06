@@ -9,7 +9,7 @@ Each step is a folder with its own README: what it does, why each choice was mad
 | Step | What it does | Main tools |
 |---|---|---|
 | [1. Pre-processing](01_preprocessing) | QC, doublet removal, normalization, cell cycle scores; one shared map per timepoint, without batch correction | scater, scran, scDblFinder, batchelor |
-| [2. Cell type annotation](02_celltypist) | a CellTypist model trained on the Kanton et al. 2019 organoid timecourse; labels, composition, marker check, t-SNE | CellTypist, scanpy, ggplot2 |
+| [2. Cell type annotation](02_celltypist) | a CellTypist model trained on the Kanton et al. 2019 organoid timecourse; labels, composition, marker check, t-SNE, marker dot plots | CellTypist, scanpy, scran, ggplot2 |
 | [3. Trajectory](03_trajectory) | pseudotime across the five timepoints, one map per genotype, with a numbered path computed from the principal graph; slingshot curves inside T0-T2 | monocle3, slingshot, igraph, ggrepel |
 | [4. Regulatory elements](04_tCRE_SCAFE) | transcribed cis-regulatory elements from the 5′ signal, a common set for all samples, and maps built on regulatory elements only | SCAFE, scran, batchelor |
 | [5. RNA velocity](05_rna_velocity) | spliced / unspliced counts, one dynamical model per sample, arrows on UMAP_A and t-SNE, velocity pseudotime and latent time | velocyto, scVelo, velociraptor |
